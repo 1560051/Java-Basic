@@ -55,8 +55,36 @@ lap10843@lap10843:~/Desktop/java-basic/Java-Basic/src/vn/com/vng$ cd ../../..
 lap10843@lap10843:~/Desktop/java-basic/Java-Basic/src$ java vn.com.vng.Main
 Hello World!
 ```
+
+Class
+--------------
+Class giống là 1 blueprint của entity(object) gồm có thuộc tính và hành động, class sẽ định nghĩa cấu trúc của object
+Một Class trong Java có thể chứa: 
+* Contructor
+* Phương thức (method)
+* Thuộc tính
+* Class
+* Khối Lệnh
+
+Object
+--------------
+Đối tượng(Object) là một thể hiện của một lớp(Class). Lớp là một mẫu hoặc thiết kế từ đó các đối tượng được tạo ra. Vì vậy, đối tượng là các thể hiện của một lớp
+
+
+
+
 Variables
 ---------------
+1 biến gồm:
++ AcceessSpecifier gồm (private, deafault, protected, public)
++ Kiểu dữ liệu (...)
++ Tên biến
+
+Các loại biến trong java:
+- *Biến local*: là các biến khai báo trong constructor, method, khối và không cần accessmodifer khi khai báo và cần khởi tạo giá trị mặc định
+- *Biến instance*: là attribute khai báo trong class, có accessmodifier được tạo ra khi đối tượng được tạo bằng từ khóa `new`
+- *Biến static*: là biến có từ khóa static, biến static được tạo mà không cần khởi tạo đối tượng, được truy cập thông qua class 
+
 Các kiểu dữ liệu nguyên thủy
 | Kiểu dữ liệu        | Kích thước    | Gía trị mặc định  |      Giới hạn giá trị       |
 | -------------       |:-------------:|             :-----:|---------------------------:|
@@ -69,7 +97,19 @@ Các kiểu dữ liệu nguyên thủy
 |float              |4 byte|                           0.0     |        1.17549435e-38 to 3.4028235e+38    |
 |double             |8 byte|                         0.0       |         4.9e-324 to 1.7976931348623157e+308   |
 
+Method
+--------
+1 phương thức gồm có:
+* Accessmodifier
+* Tên Phương thức
+* Tham Số
+* Kiểu dữ liệu trả về (trừ void)
+* Phương thức có thể được gọi bởi object hoặc class(phương thức static)
 
-
-OOP
+Constructor
 ---------------
+Constructor trong java là một dạng đặc biệt của phương thức được sử dụng để khởi tạo các đối tượng, Java Constructor được gọi tại thời điểm tạo đối tượng. Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng
+- Tên Contructor là tên của Class
+- Contructor không có kiểu giá trị trả về 
+- Có 2 loại Constructor là: Mặc định và có tham số
+- Nếu không có Contructor thì Java sẽ tạo ra constructor mặc định.
