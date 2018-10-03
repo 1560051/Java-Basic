@@ -86,16 +86,17 @@ Các loại biến trong java:
 - *Biến static*: là biến có từ khóa static, biến static được tạo mà không cần khởi tạo đối tượng, được truy cập thông qua class 
 
 Các kiểu dữ liệu nguyên thủy
+-----------------------
 | Kiểu dữ liệu        | Kích thước    | Gía trị mặc định  |      Giới hạn giá trị       |
-| -------------       |:-------------:|             :-----:|---------------------------:|
-| boolean             | 1 byte          |            false |     true or false              |          
-| byte                | 1 byte     |               0 |          -128 to 127            |
-| char                | 2 byte     |                unsiged |       \u0000' \u0000' to \uffff' or 0 to 65535      |
-|short              |2 byte         |                0   |           -32768 to 32767       |
-|int                |4 byte|                          0  |         -2147483648 to 2147483647     |
-|long               |8 byte|                           0    |        -9223372036854775808 to 9223372036854775807   |
-|float              |4 byte|                           0.0     |        1.17549435e-38 to 3.4028235e+38    |
-|double             |8 byte|                         0.0       |         4.9e-324 to 1.7976931348623157e+308   |
+| -------------       |:-------------:|:------------------:|---------------------------:|
+| boolean             | 1 byte        |    false            |     true or false              |          
+| byte                | 1 byte      |       0                |   -128 to 127            |
+| char                | 2 byte      |        unsigned        | \u0000' \u0000' to \uffff' or 0 to 65535      |
+|short                |2 byte       |      0                |    -32768 to 32767       |
+|int                  |4 byte       |      0                |  -2147483648 to 2147483647     |
+|long                 |8 byte       |       0              |  -9223372036854775808 to 9223372036854775807   |
+|float                |4 byte       |       0.0                 |   1.17549435e-38 to 3.4028235e+38    |
+|double               |8 byte       |        0.0              |    4.9e-324 to 1.7976931348623157e+308   |
 
 Method
 --------
@@ -110,6 +111,17 @@ Constructor
 ---------------
 Constructor trong java là một dạng đặc biệt của phương thức được sử dụng để khởi tạo các đối tượng, Java Constructor được gọi tại thời điểm tạo đối tượng. Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng
 - Tên Contructor là tên của Class
-- Contructor không có kiểu giá trị trả về 
+- Contructor không có kiểu giá trị trả về
 - Có 2 loại Constructor là: Mặc định và có tham số
 - Nếu không có Contructor thì Java sẽ tạo ra constructor mặc định.
+
+cách đặt tên method khuyến nghị: 
+* Bắt đầu với 1 ký tự thường 
+* Tránh dùng số trừ khi thật sự cần thiết
+* Chỉ sử dụng ký tự alphabetaric
+Getter
+--------------
+- Dùng để lấy giá trị của thuộc tính (thường thuộc tính dùng Accessmodifier là private)
+Setter
+-------------
+- Dùng để thay đổi giá trị của thuộc tính 
