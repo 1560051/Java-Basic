@@ -57,6 +57,7 @@ Hello World!
 ```
 Variables
 ---------------
+Các kiểu dữ liệu nguyên thủy
 | Kiểu dữ liệu        | Kích thước    | Gía trị mặc định  |      Giới hạn giá trị       |
 | -------------       |:-------------:|             :-----:|---------------------------:|
 | boolean             | 1 byte          |            false |     true or false              |          
