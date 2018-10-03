@@ -107,21 +107,26 @@ Method
 * Kiểu dữ liệu trả về (trừ void)
 * Phương thức có thể được gọi bởi object hoặc class(phương thức static)
 
+Cách đặt tên method khuyến nghị: 
+* Bắt đầu với 1 ký tự thường 
+* Tránh dùng số trừ khi thật sự cần thiết
+* Chỉ sử dụng ký tự alphabetaric
+
 Constructor
 ---------------
 Constructor trong java là một dạng đặc biệt của phương thức được sử dụng để khởi tạo các đối tượng, Java Constructor được gọi tại thời điểm tạo đối tượng. Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng
+
+### Đặc Điểm của Constructor:
 - Tên Contructor là tên của Class
 - Contructor không có kiểu giá trị trả về
 - Có 2 loại Constructor là: Mặc định và có tham số
 - Nếu không có Contructor thì Java sẽ tạo ra constructor mặc định.
 
-cách đặt tên method khuyến nghị: 
-* Bắt đầu với 1 ký tự thường 
-* Tránh dùng số trừ khi thật sự cần thiết
-* Chỉ sử dụng ký tự alphabetaric
+
 Getter
 --------------
 - Dùng để lấy giá trị của thuộc tính (thường thuộc tính dùng Accessmodifier là private)
+
 Setter
 -------------
 - Dùng để thay đổi giá trị của thuộc tính 
