@@ -22,13 +22,17 @@ Tất cả các chương trình khi muốn thực thi được thì phải bắt
 ```
 package vn.com.vng;
 
-public class Main {
+public class HelloWorld {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }
 } 
 ```
+### Phân tích cú pháp chương trình HelloWorld:
+> Ở dòng đầu tiên`package vn.com.vn` có chức năng chỉ dẩn nơi chứa Class HelloWorld
+> Phương thức `public static void main` dùng để run chương trình.
+> `System.out.println("Hello World!")`Dùng để xuất ra chuỗi được truyền vào ra Terminal
 
 - Ta sẽ sử dụng command line để hiểu rõ quá trình compile
 - Đầu tiên ta phải thay đổi directory cùng với file .java: (do class Main nằm trong package vn.com.vng nên file HelloWorld.java sẽ có đường dẫn là .vn/com/vng)
@@ -36,8 +40,9 @@ public class Main {
 - Sau khi compile trong cùng thư mục sẽ xuất hiện file `HelloWorld.class`
 - Để chuyển bytecode thành mã máy và thực thi ta dùng lênh: `java vn.com.vng.HelloWorld`
 
-Kết Quả:
+Kết Quả: Không tìm thấy file HelloWorld.class
 ```
+~/Desktop/java-basic/Java-Basic/src/vn/com/vng$ java vn.com.vng.HelloWorld
  Error: Could not find or load main class Main
 ```
 Vì sao?
@@ -45,7 +50,7 @@ Vì sao?
 
 Giải quyết:
 - Thay đổi đường dẫn thực hiện câu lệnh cho phù hợp với package. Trong trường hợp này: `cd ../../..` sau đó dùng lệnh như bình thường
-- Hoặc cung cấp pathclass cho Classloader biết đường dẫn của file .class `java -cp ../../.. vn.com.vng.Main `
+- Hoặc cung cấp pathclass cho Classloader biết đường dẫn của file .class `java -cp ../../.. vn.com.vng.HelloWorld `
 
 Kết Qủa:
 ```
@@ -60,15 +65,39 @@ Class
 --------------
 Class giống là 1 blueprint của entity(object) gồm có thuộc tính và hành động, class sẽ định nghĩa cấu trúc của object
 Một Class trong Java có thể chứa: 
-* Contructor
-* Phương thức (method)
-* Thuộc tính
-* Class
-* Khối Lệnh
+> Ví dụ: Con người có các thuộc tính:  tên, tuổii, giới tính, chiều cao, cân nặng,... và có các hành động ăn, ngủ, chạy,...
+> Ta tạo class như sau
+
+`````
+public class Person{
+    private String ten;
+    private int tuoi;
+    private float chieuCao;
+    private float canNang;
+
+    pubic void an(){
+        System.out.println("Eatting");
+    }
+
+    public void ngu(){
+        
+    }
+
+    public void chay(){
+
+    }
+    
+}
+`````
+
+> Ở đây ta tạo 1 class Person có các thuộc tính  và có các "hành động" eat, sleep, walk
 
 Object
 --------------
-Đối tượng(Object) là một thể hiện của một lớp(Class). Lớp là một mẫu hoặc thiết kế từ đó các đối tượng được tạo ra. Vì vậy, đối tượng là các thể hiện của một lớp
+Object là một thực thể 
+
+
+
 
 
 
@@ -126,7 +155,83 @@ Constructor trong java là một dạng đặc biệt của phương thức đư
 Getter
 --------------
 - Dùng để lấy giá trị của thuộc tính (thường thuộc tính dùng Accessmodifier là private)
+```
+public class Person{
+    private String name;
+    private int age;
+}
+```
 
 Setter
 -------------
 - Dùng để thay đổi giá trị của thuộc tính 
+
+
+Hướng Đối Tượng Trong JAVA
+======================
+
+Tính trừu tượng (Abstraction)
+- Tính trừu tượng để các lớp sử dụng các phương thức và thuộc tính của nó mà không cần quan tâm đến nội dung trong đó.
+```
+abstract public class Hinh {
+    public static int soLuongHinh;
+
+    Hinh(){
+        this.soLuongHinh++;
+    }
+
+    public abstract float chuVi();
+    public abstract float dienTich();
+}
+
+public class HinhChuNhat extends Hinh{
+    private int chieuDai;
+    private int chieuRong;
+
+    HinhChuNhat(){
+
+    }
+
+    HinhChuNhat(int cd,int cr){
+        this.chieuDai=cd;
+        this.chieuRong=cr;
+    }
+
+    public float chuVi(){
+        return (chieuDai+chieuRong)*2;
+    }
+
+    public float dienTich(){
+        return chieuDai*chieuRong;
+    }
+}
+```
+``
+public class Main {
+    public static void main(String[] args) {
+        Hinh h=new HinhChuNhat(5,2);
+        Hinh h2=new HinhChuNhat();
+
+        System.out.println("Chu vi: "+h.chuVi());
+        System.out.println("Dien tich: "+h.dienTich());
+        System.out.println("So Luong Hinh: "+Hinh.soLuongHinh);
+    }
+}
+``
+Output:
+```
+Chu vi: 14.0
+Dien tich: 10.0
+So Luong Hinh: 2
+```
+Tính kế thừa (Inheritance)
+- Tính kế thừa giúp các lớp con có thể tái sử dụng lại các thuộc tính và phương thức của lớp cha
+
+```
+class Hinh{
+    float chuVi()
+    float dienTich()
+}
+```
+
+### Overidde
