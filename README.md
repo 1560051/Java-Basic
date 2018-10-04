@@ -206,7 +206,8 @@ public class HinhChuNhat extends Hinh{
     }
 }
 ```
-``
+
+```
 public class Main {
     public static void main(String[] args) {
         Hinh h=new HinhChuNhat(5,2);
@@ -217,7 +218,8 @@ public class Main {
         System.out.println("So Luong Hinh: "+Hinh.soLuongHinh);
     }
 }
-``
+```
+
 Output:
 ```
 Chu vi: 14.0
