@@ -81,6 +81,8 @@ public class Class2 {
 }
 
 ```
+
+```
 package vn.com.vng;
 
 import Library.HelloWorld;
@@ -94,14 +96,15 @@ public class Main {
 ```
 
 
-```
 - Cấu trúc thư mục như sau: 
+```
  java
     └───src
         ├───Library
         └───vn
             └───com
                 └───vng
+```
 - Ta thực hiện câu lệnh ở thư mục hiện hành là `java`
 - dùng lệnh compile file `Main.java`: `javac /src/vn/com/vng/Main.java`
 
@@ -243,8 +246,9 @@ Setter
 Hướng Đối Tượng Trong JAVA
 ======================
 
-Tính trừu tượng (Abstraction)
+##Tính trừu tượng (Abstraction)
 - Tính trừu tượng để các lớp sử dụng các phương thức và thuộc tính của nó mà không cần quan tâm đến nội dung trong đó.
+Ví dụ:
 ```
 abstract public class Hinh {
     public static int soLuongHinh;
@@ -300,20 +304,206 @@ Dien tich: 10.0
 So Luong Hinh: 2
 ```
 
+- Một lớp trừu tượng không thể khởi tạo. Nếu ta khai báo Hinh h = new Hinh() compiler sẽ báo lỗi
+
 ### Những lưu ý khi dùng Abstract Class
 - Abstract class không thể được khởi tạo bằng từ khóa new
 - Nếu phương thức abstract thì Không định nghĩa phần thân
 - Nếu class có phương thức abstract thì class đó phải được định nghĩa là abstract class
 
 
-Tính kế thừa (Inheritance)
-- Tính kế thừa giúp các lớp con có thể tái sử dụng lại các thuộc tính và phương thức của lớp cha
-- Để có tính kế thừa ta sử dụng 2 từ khóa: extends hoặc implements
-
+##Tính kế thừa (Inheritance)
+- Tính kế thừa giúp các lớp con có thể tái sử dụng lại các thuộc tính và phương thức của lớp cha ( không kế thừa phương thức và thuộc tính private)
+- Để sử dụng tính kế thừa ta sử dụng 2 từ khóa: extends từ 1 class hoặc implements từ 1 hoặc nhiều interface
+- Một class có thể vừa extends vừa implements cùng lúc
+Ví dụ: 
 ```
 public class HocSinh{
-    
+    private int maSo;
+    private String hoTen;
+
+    HocSinh(){
+        maSo=0;
+        hoTen="";
+    }
+
+    public void play(){
+        System.out.println("Playing...");
+    }
 }
 ```
 
-### Overidde
+```
+public class HocSinhCap1{
+    HocSinhCap1(){
+        super(); //để gọi lại constructor của lớp cha
+    }
+
+    public void study(){
+        System.out.println("Studying...");
+    }
+}
+```
+
+```
+public class TestInheritance{
+    public static void main(String[] args){
+        HocSinhCap1 hs=new HocSinhCap1();
+        hs.play();
+        hs.study();
+    }
+}
+```
+
+Kết quả
+```
+Playing...
+Studying...
+```
+##Tính đa hình
+- Tính đa hình trong hướng đối tượng là để chỉ cùng một phương thức nhưng lại có các xử lý khác nhau khi được gọi.
+- Tính đa hình thể hiện qua Override và Overload
+Ví dụ: 
+```
+class Shape {
+    void draw() {
+        System.out.println("drawing...");
+    }
+}
+ 
+class Rectangle extends Shape {
+    void draw() {
+        System.out.println("drawing rectangle...");
+    }
+}
+ 
+class Circle extends Shape {
+    void draw() {
+        System.out.println("drawing circle...");
+    }
+}
+
+class TestPolymorphism {
+    public static void main(String args[]) {
+        Shape s1 = new Shape();
+        Shape s2 = new Rectangle();
+        Shape s3 = new Circle();
+        s1.draw();
+        s2.draw();
+        s3.draw();
+    }
+}
+```
+
+Kết quả
+
+```
+drawing....
+drawing rectangle...
+drawing circle...
+```
+
+- Vì Circle chưa override phương thức draw() nên sẽ lấy draw của lớp Shape.
+- Khi truy cập thành viên dữ liệu bởi biến tham chiếu của lớp cha tới đối tượng lớp con. Khi truy cập thành viên dữ liệu mà không bị ghi đè, thì nó sẽ luôn luôn truy cập thành viên dữ liệu của lớp cha
+Ví dụ: 
+```
+class Bike{  
+ int speedlimit=20;  
+}  
+class MotoBike extends Bike{  
+ int speedlimit=120;  
+   
+ public static void main(String args[]){  
+  Bike bike=new MotoBike();  
+  System.out.println(bike.speedlimit);//20 
+}  
+```
+
+##Tính đóng gói
+- Tính đóng gói trong hướng đối tượng là kỹ thuật giấu đi thông tin hoặc hiện ra các thông tin.
+- Các phương thức, dữ liệu private sẽ không truy xuất được từ bên ngoài. 
+- Để truy xuất các dữ liệu private lập trình viên cần tạo ra các phương thức getter/setter
+Ví dụ:
+```
+public class Person {
+    // khai báo các thuộc tính của đối tượng là private
+    private String sdt;
+    private String hoTen;
+
+    public void setSDT(String sdt) {
+        this.sdt = sdt.substring(1);
+    }
+
+    public String getSDTVN(){
+        return "+84 "+sdt;
+    }
+
+    public String getSDTUS(){
+        return "0"+sdt;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+    
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+}
+```
+
+```
+public class TestPerson {
+ 
+    public static void main(String[] args) {
+        Person person = new Person();
+         
+        person.setHoTen("Hồ Quốc Bình");   
+        person.setSDT("0129324653");
+        System.out.println("Tên: " + person.getHoTen() + ", số dt VN: " + person.getSDTVN() + ", số đt US: " + person.getSDTUS());
+    }
+}
+```
+
+Kết quả: `Tên: Hồ Quốc Bình, số dtVN: 0129324653, số dt US: +84 129324653`
+
+###Từ khóa super và final trong Java
+- Từ khóa super được sử dụng để tham chiếu trực tiếp đến biến instance của lớp cha.
+- super() được sử dụng để gọi trực tiếp Constructor của lớp cha.
+- super.method() cũng có thể được sử dụng để gọi phương thức của lớp cha.
+Ví dụ:
+
+```
+class Class1 {
+    Class1() {
+        System.out.println("constructor of class1 is called");
+    }
+    public void msg(){
+        System.out.println("Message from class1");
+    }
+}
+ 
+class Class2 extends Class1 {
+    Bike2() {
+        super();//gọi Constructor của lớp cha  
+        System.out.println("constructor of class2 is called");
+    }
+
+    public void msg(){
+        super.msg();
+    }
+ 
+    public static void main(String args[]) {
+        Class2 c2 = new Class2();
+        c2.msg();
+    }
+}
+```
+Kết quả: 
+
+```
+constructor of class1 is called
+constructor of class2 is called
+Message from class1
+
+```
