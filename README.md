@@ -52,7 +52,7 @@ Giải quyết:
 - Thay đổi đường dẫn thực hiện câu lệnh cho phù hợp với package. Trong trường hợp này: `cd ../../..` sau đó dùng lệnh như bình thường
 - Hoặc cung cấp pathclass cho Classloader biết đường dẫn của file .class `java -cp ../../.. vn.com.vng.HelloWorld `
 
-Kết Qủa:
+Kết Quả:
 ```
 lap10843@lap10843:~/Desktop/java-basic/Java-Basic/src/vn/com/vng$ java -cp ../../../  vn.com.vng.Main
 Hello World!
@@ -60,6 +60,79 @@ lap10843@lap10843:~/Desktop/java-basic/Java-Basic/src/vn/com/vng$ cd ../../..
 lap10843@lap10843:~/Desktop/java-basic/Java-Basic/src$ java vn.com.vng.Main
 Hello World!
 ```
+Xét ví dụ khác
+- Ta có các class sau:
+
+```
+package Library;
+
+public class HelloWorld {
+    public static void sayHello(){
+        System.out.println("HELLO!");
+    }
+}
+
+```
+
+```
+package vn.com;
+
+public class Class2 {
+}
+
+```
+package vn.com.vng;
+
+import Library.HelloWorld;
+import vn.com.Class2;
+
+public class Main {
+    public static void main(String[] atgs){
+        HelloWorld.sayHello();
+    }
+}
+```
+
+
+```
+- Cấu trúc thư mục như sau: 
+ java
+    └───src
+        ├───Library
+        └───vn
+            └───com
+                └───vng
+- Ta thực hiện câu lệnh ở thư mục hiện hành là `java`
+- dùng lệnh compile file `Main.java`: `javac /src/vn/com/vng/Main.java`
+
+Kết Quả
+
+```
+src\vn\com\vng\Main.java:3: error: package Library does not exist
+import Library.HelloWorld;
+              ^
+src\vn\com\vng\Main.java:4: error: cannot find symbol
+import vn.com.Class2;
+             ^
+  symbol:   class Class2
+  location: package vn.com
+src\vn\com\vng\Main.java:8: error: cannot find symbol
+        HelloWorld.sayHello();
+        ^
+  symbol:   variable HelloWorld
+  location: class Main
+3 errors
+```
+- Vì class Main import 2 class khác là `HelloWorld` và `Class2` nên ta cần cung cấp classpath cho các class đó
+- Sử dụng: `java -cp "src" src/vn/com/vng/Main.java` sẽ compile thành công file Main.class
+- Sau đó dùng `java -cp "src" vn.com.vng.Main` để thông dịch thành mã máy
+
+Kết quả
+
+``
+E:\java>java -cp "src" vn.com.vng.Main
+HELLO!
+``
 
 Class
 --------------
@@ -226,13 +299,20 @@ Chu vi: 14.0
 Dien tich: 10.0
 So Luong Hinh: 2
 ```
+
+### Những lưu ý khi dùng Abstract Class
+- Abstract class không thể được khởi tạo bằng từ khóa new
+- Nếu phương thức abstract thì Không định nghĩa phần thân
+- Nếu class có phương thức abstract thì class đó phải được định nghĩa là abstract class
+
+
 Tính kế thừa (Inheritance)
 - Tính kế thừa giúp các lớp con có thể tái sử dụng lại các thuộc tính và phương thức của lớp cha
+- Để có tính kế thừa ta sử dụng 2 từ khóa: extends hoặc implements
 
 ```
-class Hinh{
-    float chuVi()
-    float dienTich()
+public class HocSinh{
+    
 }
 ```
 
