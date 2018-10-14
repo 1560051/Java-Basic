@@ -146,36 +146,32 @@ Một Class trong Java có thể chứa:
 
 `````
 public class Person{
-    private String ten;
-    private int tuoi;
-    private float chieuCao;
-    private float canNang;
+    private String name;
+    private int age;
+    private float height;
+    private float weight;
 
-    pubic void an(){
+    //method
+    pubic void eat(){
         System.out.println("Eatting");
     }
 
-    public void ngu(){
+    public void sleep(){
         
     }
 
-    public void chay(){
+    public void run(){
 
+    }
+
+    public getName(){
+        return this.name;
     }
     
 }
 `````
 
-> Ở đây ta tạo 1 class Person có các thuộc tính  và có các "hành động" eat, sleep, walk
-
-Object
---------------
-Object là một thực thể 
-
-
-
-
-
+> Ở đây ta tạo 1 class Person có các thuộc tính name, ege, height, weight  và có các "hành động" eat, sleep, run
 
 
 Variables
@@ -205,6 +201,7 @@ Các kiểu dữ liệu nguyên thủy
 
 Method
 --------
+- Một method của class sẽ định nghĩa các hành động của nó
 1 phương thức gồm có:
 * Accessmodifier
 * Tên Phương thức
@@ -217,9 +214,41 @@ Cách đặt tên method khuyến nghị:
 * Tránh dùng số trừ khi thật sự cần thiết
 * Chỉ sử dụng ký tự alphabetaric
 
+Vòng Lặp
+----------
+- Vòng lặp trong java được sử dụng để lặp một phần của chương trình nhiều lần
+- Các loại vòng lặp gồm:for, while, do..while
+
+Ví dụ:
+```
+String str="Hello JAVA";
+for(int i=0;i<str.length();i++){
+    System.out.println(str.charAt(i));
+}
+```
+Kết quả:
+
+```
+H
+e
+l
+l
+o
+
+J
+A
+V
+A
+```
+
+
+Hướng Đối Tượng Trong JAVA
+======================
+
 Constructor
 ---------------
-Constructor trong java là một dạng đặc biệt của phương thức được sử dụng để khởi tạo các đối tượng, Java Constructor được gọi tại thời điểm tạo đối tượng. Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng
+- Constructor được sử dụng chỉ để tạo instance của class
+- Nó khởi tạo các giá trị để cung cấp dữ liệu cho các đối tượng
 
 ### Đặc Điểm của Constructor:
 - Tên Contructor là tên của Class
@@ -228,25 +257,7 @@ Constructor trong java là một dạng đặc biệt của phương thức đư
 - Nếu không có Contructor thì Java sẽ tạo ra constructor mặc định.
 
 
-Getter
---------------
-- Dùng để lấy giá trị của thuộc tính (thường thuộc tính dùng Accessmodifier là private)
-```
-public class Person{
-    private String name;
-    private int age;
-}
-```
-
-Setter
--------------
-- Dùng để thay đổi giá trị của thuộc tính 
-
-
-Hướng Đối Tượng Trong JAVA
-======================
-
-##Tính trừu tượng (Abstraction)
+## Tính trừu tượng (Abstraction)
 - Tính trừu tượng để các lớp sử dụng các phương thức và thuộc tính của nó mà không cần quan tâm đến nội dung trong đó.
 Ví dụ:
 ```
@@ -312,7 +323,7 @@ So Luong Hinh: 2
 - Nếu class có phương thức abstract thì class đó phải được định nghĩa là abstract class
 
 
-##Tính kế thừa (Inheritance)
+## Tính kế thừa (Inheritance)
 - Tính kế thừa giúp các lớp con có thể tái sử dụng lại các thuộc tính và phương thức của lớp cha ( không kế thừa phương thức và thuộc tính private)
 - Để sử dụng tính kế thừa ta sử dụng 2 từ khóa: extends từ 1 class hoặc implements từ 1 hoặc nhiều interface
 - Một class có thể vừa extends vừa implements cùng lúc
@@ -360,7 +371,7 @@ Kết quả
 Playing...
 Studying...
 ```
-##Tính đa hình
+## Tính đa hình
 - Tính đa hình trong hướng đối tượng là để chỉ cùng một phương thức nhưng lại có các xử lý khác nhau khi được gọi.
 - Tính đa hình thể hiện qua Override và Overload
 Ví dụ: 
@@ -419,7 +430,7 @@ class MotoBike extends Bike{
 }  
 ```
 
-##Tính đóng gói
+## Tính đóng gói
 - Tính đóng gói trong hướng đối tượng là kỹ thuật giấu đi thông tin hoặc hiện ra các thông tin.
 - Các phương thức, dữ liệu private sẽ không truy xuất được từ bên ngoài. 
 - Để truy xuất các dữ liệu private lập trình viên cần tạo ra các phương thức getter/setter
@@ -467,7 +478,7 @@ public class TestPerson {
 
 Kết quả: `Tên: Hồ Quốc Bình, số dtVN: 0129324653, số dt US: +84 129324653`
 
-###Từ khóa super và final trong Java
+### Từ khóa super và final trong Java
 - Từ khóa super được sử dụng để tham chiếu trực tiếp đến biến instance của lớp cha.
 - super() được sử dụng để gọi trực tiếp Constructor của lớp cha.
 - super.method() cũng có thể được sử dụng để gọi phương thức của lớp cha.
@@ -505,5 +516,160 @@ Kết quả:
 constructor of class1 is called
 constructor of class2 is called
 Message from class1
+```
+Java Collections
+==========
+## Mảng
+- Mảng là cấu trúc dữ liệu dùng để lưu trữ danh sách cùng kiểu dữ liệu
+- Địa chỉ vùng nhớ của mảng liên tục và tăng dần
+- Xác đinh phần tử của một mảng qua index (bắt đầu từ 0)
+
+Ví dụ:
+````
+public Class ArrayTesting{
+    public static void main(String[] args){
+        int a[]=new int[5] {1,2,3,4,5};// Khởi tạo mảng kích thước 5 phần tử
+
+        //duyệt mảng qua vòng lặp bắt đầu từ vị trí 0
+        for(int i=0;i<a.length;i++){
+            System.out.println("a["+i+"]: "+a[i]);
+        }
+    }
+}
+````
+Kết quả: 
+```
+a[0]: 1
+a[1]: 2
+a[2]: 3
+a[3]: 4
+a[4]: 5
+```
+
+## Lists
+- List là một interface trong java. Nó chứa các phương thức để chèn và xóa các phần tử dựa trên chỉ số index.
+
+Ví dụ:
+```
+import java.util.ArrayList;
+import java.util.List;
+ 
+public class ListExample {
+    public static void main(String args[]) {
+        List<String> list = new ArrayList<String>();
+        list.add("Java");
+        list.add("C++");
+        list.add("PHP");
+        list.add(1, "Python");
+        System.out.println("Phan tu co index = 2 la: " + list.get(2));
+        // show list
+        for (String s : list) {
+            System.out.println(s);
+        }
+    }
+}
+```
+
+Kết quả: 
+```
+Phan tu co index = 2 la: C++
+Java
+Python
+C++
+PHP
+```
+
+
+## Sets
+### HashSet
+- Lớp HashSet trong java được sử dụng để tạo một Collection sử dụng bảng băm để lưu trữ. Nó kế thừa lớp AbstractSet và implements giao diện Set.
+Các điểm quan trọng về lớp HashSet trong java là:
+- HashSet chỉ chứa các phần tử duy nhất.
+- HashSet lưu trữ các phần tử bằng cách sử dụng một cơ chế được gọi là băm.
+Nguồn: http://viettuts.vn
+## Map
+### HashMap
+- HashMap lưu trữ dữ liệu dưới dạng cặp key và value.
+- Nó chứa các key duy nhất.
+- Nó có thể có 1 key là null và nhiều giá trị null.
+- Nó duy trì các phần tử KHÔNG theo thứ tự.
+
+Ví dụ: 
+```
+//Có 4 loại nucleotic: A C G T
+//Viết hàm sao cho chuỗi DNA sau đó đếm số lượng các loại 
+//nucleotic có trong chuỗi đó
+//NucleotideCounter = new NucleotideCounter("AACG"")
+//Trả ra [('A',2),
+//        ('B',1),
+//        ('C',1),            
+//        ('D',0)]
+//
+
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class NucleotideCounter {
+    private String dna;
+
+    NucleotideCounter(String dnaString){
+        this.dna=dnaString;
+    }
+
+    public Map<Character, Integer> nucleotideCounts() extends Exception{
+
+        //Tạo HashMap nucleotic
+        Map<Character,Integer> nucleotide=new HashMap<Character, Integer>();
+        nucleotide.put('A',0);
+        nucleotide.put('C',0);
+        nucleotide.put('G',0);
+        nucleotide.put('T',0);
+
+
+        Set<Character> nameNucleotide = nucleotide.keySet();
+        //duyệt theo key trong danh sách nucleotic
+        for(Character key:nameNucleotide){
+            int count =0;
+            //duyệt chuỗi DNA và so sánh từng ký tự với nucleotic
+            for(int i=0;i<dna.length();i++){
+                //trường hợp chưas ký tự không hợp lệ
+                if(dna.charAt(i)!=65 && dna.charAt(i)!=67
+            && dna.charAt(i)!= 84 && dna.charAt(i)!=71)
+                 throw new Exception();
+                //Nếu chuỗi xuất hiện trong danh sách nucleotic
+                if(key == dna.charAt(i))
+                    count++;
+            }
+            nucleotide.put(key,count);
+        }
+
+        return nucleotide;
+    }
+}
+```
 
 ```
+import NucleotideCounter
+public class TestHashMap{
+    public static void main(String[] args){
+        NucleotideCounter nucleotideCounter = new NucleotideCounter("GGAACT");
+        Map<Character,Interger> hm = nucleotideCounter.nucleotideCounts();
+    }
+}
+```
+Kết quả: 
+```
+hm= {('A',2),
+    ('C', 1),
+    ('G', 2),
+    ('T', 1)}
+```
+
+
+Exceptions
+==========
+
+
+### Khối try, catch, finally
