@@ -629,6 +629,7 @@ public class NucleotideCounter {
 
 
         Set<Character> nameNucleotide = nucleotide.keySet();
+
         //duyệt theo key trong danh sách nucleotic
         for(Character key:nameNucleotide){
             int count =0;
@@ -637,7 +638,9 @@ public class NucleotideCounter {
                 //trường hợp chưas ký tự không hợp lệ
                 if(dna.charAt(i)!=65 && dna.charAt(i)!=67
             && dna.charAt(i)!= 84 && dna.charAt(i)!=71)
+
                  throw new Exception();
+
                 //Nếu chuỗi xuất hiện trong danh sách nucleotic
                 if(key == dna.charAt(i))
                     count++;
@@ -670,6 +673,140 @@ hm= {('A',2),
 
 Exceptions
 ==========
+- Trong java, ngoại lệ là một sự kiện làm gián đoạn luồng bình thường của chương trình. Nó là một đối tượng được ném ra tại runtime.(Nguồn http://viettuts.vn/exception-handling)
+- Lợi thế cốt lõi của việc xử lý ngoại lệ là duy trì luồng bình thường của ứng dụng. Ngoại lệ thường làm gián đoạn luồng bình thường của ứng dụng đó là lý do tại sao chúng ta sử dụng xử lý ngoại lệ.
+Ví dụ:
+```
+public class Main {
+    public static void main(String[] atgs){
+        System.out.println(1/0);
+    }
+}
+```
 
+Kết quả:
+```
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+	at Main.main(Main.java:6)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
+```
+## Checked Exception
+- Các lớp extends từ lớp Throwable ngoại trừ RuntimeException và Error được gọi là checked exception, ví dụ như Exception, SQLException vv.
+- Checked exception được kiểm tra tại compile-time.
+Ví dụ: 
+```
+//Class kế thừa từ lớp kế thừa Exception là 1 checked
+public class CustomCheckedException extends Exception {
+    CustomCheckedException() {
+        super();
+    }
+
+    CustomCheckedException(String message) {
+        super(message);
+    }
+}
+```
+
+```
+public class PhanSo {
+    private int tu;
+    private int mau;
+
+    //để liệt kê tất cả ngoại lệ checked có thể xảy ra phải dùng từ khóa throws
+    PhanSo(int num1,int num2)throws CustomCheckedException{
+        if(num2==0)
+            throw new CustomCheckedException("Mau so phai khac 0");//ném ngoại lệ để khi
+                                                                // methode được gọi sẽ catch lại và sử lý
+        this.tu=num1;
+        this.mau=num2;
+    }
+}
+```
+
+```
+public class Main {
+    public static void main(String[] atgs){
+
+        try{
+            //Khi gọi method có throw 1 checked exception trình biên dịch 
+            //sẽ bắt buộc bạn catch lại và xử lý qua khối try catch
+            PhanSo ps=new PhanSo(1,2);
+            System.out.println("Khoi tao thanh cong");
+        }
+
+        //catch 1 ngoại lệ được ném ra
+        catch (CustomCheckedException e) {
+            //tiến hành xử lý trong khối catch
+            System.out.println("Khoi tao that bai");
+            System.out.println(e.getMessage());
+        }
+    }
+}
+```
+
+## UnChecked Exception
+- Các lớp extends từ RuntimeException được gọi là unchecked exception
+- Các ngoại lệ unchecked không được kiểm tra tại compile-time mà chúng được kiểm tra tại runtime.
+
+Ví dụ:
+
+```
+public class CustomUncheckedException extends  RuntimeException{
+    CustomUncheckedException() {
+        super();
+    }
+
+    CustomUncheckedException(String message) {
+        super(message);
+    }
+}
+```
+
+```
+public class PhanSo {
+    private int tu;
+    private int mau;
+
+    PhanSo(int num1,int num2){
+        if(num2==0)
+            throw new CustomUncheckedException("Mau so phai khac 0");
+        this.tu=num1;
+        this.mau=num2;
+    }
+}
+```
+
+```
+public class Main {
+    public static void main(String[] atgs){
+
+       try{
+           // ngoại lệ sẽ không bắt bạn catch lại để xử lý
+            PhanSo ps=new PhanSo(1,0);
+            System.out.println("Khoi tao thanh cong");
+        }
+        catch (CustomUncheckedException unchecked){// không catch lại vẫn không thông báo lỗi
+            System.out.println("Khoi tao that bai");
+            System.out.println(unchecked.getMessage());
+        }
+    }
+}
+```
+
+Kết quả:
+```
+Khoi tao that bai
+Mau so phai khac 0
+```
+- Lớp CustomUncheckedException là con của RuntimeExcetion nên nó là UnCheckedException
+- Trong constructor của phân số có ném ra một ngoại lệ
+- Ngoại lệ này sẽ không được kiểm tra lúc compile nên có thể hoặc không cần catch lại
 
 ### Khối try, catch, finally
+- Khối try thực thi khi cho tới khi gặp ngoại lệ thì dừng lại
+- Khối catch thực thi xảy ra ngoại lệ
+- Khối finally là khối luôn được thực thi bất kể có ngoại lệ hay không (ví dụ: đóng kết nối)
