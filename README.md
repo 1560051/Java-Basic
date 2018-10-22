@@ -29,6 +29,8 @@ public class HelloWorld {
     }
 } 
 ```
+
+## JAVA Class path
 ### Phân tích cú pháp chương trình HelloWorld:
 > Ở dòng đầu tiên`package vn.com.vn` có chức năng chỉ dẩn nơi chứa Class HelloWorld
 > Phương thức `public static void main` dùng để run chương trình.
@@ -171,6 +173,7 @@ public class Person{
 }
 `````
 
+
 > Ở đây ta tạo 1 class Person có các thuộc tính name, ege, height, weight  và có các "hành động" eat, sleep, run
 
 
@@ -198,6 +201,82 @@ Các kiểu dữ liệu nguyên thủy
 |long                 |8 byte       |       0              |  -9223372036854775808 to 9223372036854775807   |
 |float                |4 byte       |       0.0                 |   1.17549435e-38 to 3.4028235e+38    |
 |double               |8 byte       |        0.0              |    4.9e-324 to 1.7976931348623157e+308   |
+
+
+### Immutable Object
+- Khi khởi tạo 1 đối tượng, thì trạng thái của tối tượng đó không thể thay đổi.
+- Immutable Class chỉ có hàm get chứ không có set
+- Để tạo 1 Immutable class ta dùng từ khóa final.
+
+Ví dụ:
+```
+public final class Name {
+
+    private String first_name;
+    private String last_name;
+    private 
+
+    public ImmutableClass(String first_name, String last_name) {
+        this.first_name = first_name;
+        this.last_name = last_name;
+    }
+
+    public String getFirstName() {
+        return first_name;
+    }
+
+    public String getLastName() {
+        return last_name;
+    }
+
+    public final void sayHello(){
+        System.out.println("Hello" + this.last_name + this.first_name = first_name);
+    }
+
+}
+```
+
+### Từ khóa final
+- Một phương thức là final thì không ghi đè được `public final void sayHello(){System.out.println("Hello" + this.last_name + this.first_name = first_name);}`
+- Không thể kế thừa một class final `final class Name{}`
+- Một biến final không thể thay đổi final CMND 14124124
+
+
+### String trong java
+
+- Sự khác nhau giữa 2 cách tạo đối tượng này là ở cách tạo String bằng literal thì nếu ta khởi tạo giá trị đã có sẳn thì JVM sẽ không được tạo nửa mà sẽ tham chiếu đến giá trị đã có trước đó, ở trong trường hợp này thì `str1` và `str2` đều có giá trị là `"HelloWorld"` nên cả 2 đều tham chiếu đến 1 đối tượng.
+- Còn sử dụng từ khóa new thì sẽ tạo ra 1 đối tượng mới hoàn toàn mặc dù đã có giá trị trùng trước đó.
+
+ - Có 2 cách khởi tạo 1 đối tượng String:
+ 1. Sử dụng Literal
+ ``
+ String str1 = "HelloWorld";
+ String str2 = "HelloWorld";
+ ``
+
+ 2. Sử dụng từ khóa new
+ ``
+String str3 = new String("Hello World");
+ ``
+
+ - Để kiểm tra thử ta sử dụng toán tử `==`
+
+ ```
+System.out.println(str1==str2);
+System.out.ptintln(str1==str3);
+ ```
+
+ Kết quả:
+ ``
+true
+false
+ ``
+
+- Còn để so sánh giá trị của String ta dùng các phương thức: `equals()`, hoặc `compareTo()`.
+
+
+
+
 
 Method
 --------
@@ -321,6 +400,26 @@ So Luong Hinh: 2
 - Abstract class không thể được khởi tạo bằng từ khóa new
 - Nếu phương thức abstract thì Không định nghĩa phần thân
 - Nếu class có phương thức abstract thì class đó phải được định nghĩa là abstract class
+
+## Interface
+Nguồn: http://viettuts.vn/
+- Interface chỉ có các phương thức trừu tượng.
+- Interface là một kỹ thuật để thu được tính trừu tượng hoàn toàn và đa kế thừa trong Java.
+- Nó không thể được khởi tạo giống như lớp trừu tượng.
+
+Một interface tương tự với một class bởi những điểm sau đây:
+
+- Một interface được viết trong một file với định dạng .java, với tên của interface giống tên của file.
+- Bytecode của interface được lưu trong file có định dạng .class.
+- Khai báo interface trong một package, những file bytecode tương ứng cũng có cấu trúc thư mục có cùng tên package.
+
+Một interface khác với một class ở một số điểm sau đây:
+- Bạn không thể khởi tạo một interface.
+- Một interface không chứa bất cứ hàm Contructor nào.
+- Tất cả các phương thức của interface đều là abstract.
+- Một interface không thể chứa một trường nào trừ các trường vừa static và final.
+- Một interface không thể kế thừa từ lớp, nó được triển khai bởi một lớp.
+- Một interface có thể kế thừa từ nhiều interface khác
 
 
 ## Tính kế thừa (Inheritance)
@@ -517,26 +616,112 @@ constructor of class1 is called
 constructor of class2 is called
 Message from class1
 ```
+### Enum
+- Enum trong java là một kiểu dữ liệu được sử dụng để định nghĩa các tập hợp các hằng số.
+
+```
+public enum Protein {
+    AUG("Methionine"),
+    UUU("Phenylalanine"), UUC("Phenylalanine"),
+    UUA("Leucine"), UUG("Leucine"),
+    UCU("Serine"), UCC("Serine"), UCA("Serine"), UCG("Serine"),
+    UAU("Tyrosine"), UAC("Tyrosine"),
+    UGU("Cysteine"), UGC("Cysteine"),
+    UGG("Tryptophan");
+
+    private String nameProtein;
+
+
+    Protein(String name){
+        this.nameProtein=name;
+    }
+
+    String getName(){
+        return this.nameProtein;
+    }
+}
+```
+
+```
+class ProteinTranslator {
+
+     ProteinTranslator(){
+
+    }
+
+    static List<String> translate(String rnaSequence) {
+        List<String> lS = new ArrayList<String>();
+
+        //Lấy tất cả các value của Protein lưa vào mảng
+        Protein[] proteins=Protein.values();
+
+        //Duyệt lần lượt 3 ký tự trong chuỗi 
+        for(int i=0,j=3;j<=rnaSequence.length();i+=3,j+=3){
+            String tmp=rnaSequence.substring(i,j);
+
+            //duyệt toàn bộ value của protein
+            for (Protein p: proteins){
+                String s=p.getName();
+
+                //so sánh chuỗi chứa 3 ký tự và protein
+                if(tmp.equals(p.toString())==true) {
+                    lS.add(p.getName());
+                    break;
+                }
+            }
+        }
+        //bỏ vào set để khử các giá trị trùng
+        Set<String> hs=new HashSet<String>();
+        hs.addAll(lS);
+        lS.clear();
+        lS.addAll(hs);
+        return  lS;
+    }
+}
+```
+
 Java Collections
 ==========
 ## Mảng
 - Mảng là cấu trúc dữ liệu dùng để lưu trữ danh sách cùng kiểu dữ liệu
+- Mảng có thể sử dụng như là 1 biến static, biến local, hoặc parameter
+
+Cách thức khai báo 1 mảng cũng giống như khai báo 1 biến, chỉ có thêm dấu [] sau kiểu dữ liệu.
+Ví dụ:
+```
+int[] intArray;
+char[] charArray;
+Object[] objArray;
+```
+
 - Địa chỉ vùng nhớ của mảng liên tục và tăng dần
 - Xác đinh phần tử của một mảng qua index (bắt đầu từ 0)
+Để khởi tạo một mảng ta dùng toán tử new hoặc dùng literal
 
-Ví dụ:
+```
+int []a ={1,2,3,4,5};
+int []a= new int[5];
+```
+
+Ví dụ về sử dụng vòng lặp:
 ````
 public Class ArrayTesting{
     public static void main(String[] args){
         int a[]=new int[5] {1,2,3,4,5};// Khởi tạo mảng kích thước 5 phần tử
+        int sum=0;
 
         //duyệt mảng qua vòng lặp bắt đầu từ vị trí 0
         for(int i=0;i<a.length;i++){
+            sum+=a[i];//cộng a[i] và gán vào sum;
+
             System.out.println("a["+i+"]: "+a[i]);
         }
+        System.out.println("sum of array: "+sum);
     }
 }
 ````
+
+
 Kết quả: 
 ```
 a[0]: 1
@@ -544,11 +729,33 @@ a[1]: 2
 a[2]: 3
 a[3]: 4
 a[4]: 5
+sum of array: 15
 ```
+## Mảng đa chiều
+
+
+
 
 ## Lists
 - List là một interface trong java. Nó chứa các phương thức để chèn và xóa các phần tử dựa trên chỉ số index.
+- List có thể chứa các phần tử trùng lặp.
 
+Các Class implement từ lớp List: 
+- java.util.ArrayList
+- java.util.LinkedList
+- java.util.Vector
+- java.util.Stack
+
+Ví dụ về khởi tạo 1 List instance:
+
+```
+List listA = new ArrayList();
+List listB = new LinkedList();
+List listC = new Vector();
+List listD = new Stack();
+```
+
+Để thêm 1 giá trị vào 1 list ta dùng method add()
 Ví dụ:
 ```
 import java.util.ArrayList;
@@ -556,12 +763,15 @@ import java.util.List;
  
 public class ListExample {
     public static void main(String args[]) {
+
         List<String> list = new ArrayList<String>();
         list.add("Java");
         list.add("C++");
         list.add("PHP");
-        list.add(1, "Python");
+        list.add(1, "Python");// chèn giá trị vào index 1
+        
         System.out.println("Phan tu co index = 2 la: " + list.get(2));
+
         // show list
         for (String s : list) {
             System.out.println(s);
@@ -581,6 +791,14 @@ PHP
 
 
 ## Sets
+- Java Set Interface, `java.ulti.Set` được giới thiệu là một collections của object, trong đó mỗi object trong set là *duy nhất*
+Set implementations trong Java Collections:
+- java.util.EnumSet
+- java.util.HashSet
+- java.util.LinkedHashSet
+- java.util.TreeSet
+
+
 ### HashSet
 - Lớp HashSet trong java được sử dụng để tạo một Collection sử dụng bảng băm để lưu trữ. Nó kế thừa lớp AbstractSet và implements giao diện Set.
 Các điểm quan trọng về lớp HashSet trong java là:
@@ -671,6 +889,14 @@ hm= {('A',2),
 ```
 
 
+Thực thi
+`List<String> listProtein = ProteinTranslator.translate("AUGUUUUGG");`
+
+Kết quả: 
+```
+{"Methionine","Phenylalanine","Tryptophan"}
+```
+
 Exceptions
 ==========
 - Trong java, ngoại lệ là một sự kiện làm gián đoạn luồng bình thường của chương trình. Nó là một đối tượng được ném ra tại runtime.(Nguồn http://viettuts.vn/exception-handling)
@@ -694,10 +920,18 @@ Exception in thread "main" java.lang.ArithmeticException: / by zero
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:147)
 ```
+
+### Khối try, catch, finally
+- Khi muốn xử lý ngoại lệ ta sẽ viết code trong khối try - catch - finally
+- Khối try thực thi khi cho tới khi gặp ngoại lệ thì dừng lại
+- Khối catch thực thi khi xảy ra ngoại lệ
+- Khối finally là khối luôn được thực thi bất kể có ngoại lệ hay không (ví dụ: đóng kết nối)
+
 ## Checked Exception
 - Các lớp extends từ lớp Throwable ngoại trừ RuntimeException và Error được gọi là checked exception, ví dụ như Exception, SQLException vv.
 - Checked exception được kiểm tra tại compile-time.
-Ví dụ: 
+
+Ví dụ: handle exception
 ```
 //Class kế thừa từ lớp kế thừa Exception là 1 checked
 public class CustomCheckedException extends Exception {
@@ -806,7 +1040,133 @@ Mau so phai khac 0
 - Trong constructor của phân số có ném ra một ngoại lệ
 - Ngoại lệ này sẽ không được kiểm tra lúc compile nên có thể hoặc không cần catch lại
 
-### Khối try, catch, finally
-- Khối try thực thi khi cho tới khi gặp ngoại lệ thì dừng lại
-- Khối catch thực thi xảy ra ngoại lệ
-- Khối finally là khối luôn được thực thi bất kể có ngoại lệ hay không (ví dụ: đóng kết nối)
+
+## Generic 
+- Generic method là những method mà có thể được gọi với arguments có kiểu dữ liệu khác nhau, compiler sẽ đảm bảo tính chính xác của những kiểu dữ liệu đó
+- Việc sử dụng Generic sẽ tạo ra ngã nguồn có tính tái sử dụng cao 
+- Ví dụ ArrayList<T> là Collection là tập hợp dữ liểu của bất kể *kiểu dữ liệu* nào, cụ ở đây <T> có thể là Interger, String, Character, Student,...
+
+Ví dụ Linked List handle dùng Generic:
+```
+public class ListNode <T>{
+    public T data;
+    public ListNode next;
+
+    ListNode(T value){
+        data=value;
+        next=null;
+    }
+}
+```
+
+```
+import java.lang.reflect.Array;
+import java.util.NoSuchElementException;
+
+public class SimpleLinkedList<T> {
+
+    private ListNode head;
+    private ListNode tail;
+    private int size;
+
+    SimpleLinkedList(){
+        this.head = null;
+        this.tail=null;
+        this.size=0;
+    }
+
+    // constructor với parameter là 1 array
+    SimpleLinkedList(T[] t){
+        this();
+        ListNode nodeFirst = new ListNode(t[0]);
+        head=nodeFirst;
+        tail=nodeFirst;
+        this.size++;
+
+        //lấy phần tử của array chuyển gán cho linkedlist dưới dạng add tail
+        for(int i=1;i<t.length;i++){
+            ListNode node = new ListNode(t[i]);
+            tail.next=node;
+            tail=node;
+            size++;
+        }
+    }
+
+    int size(){
+        return size;
+    }
+
+    public boolean push(T value){
+        if(value==null)
+            return false;
+
+        ListNode node = new ListNode(value);
+        if(head==null){
+            head=node;
+            tail=node;
+            size++;
+            return true;
+        }
+
+        node.next = head;
+        head = node;
+        size++;
+        return true;
+    }
+
+    //pop: getHead
+    public T pop(){
+        if(this.size==0)
+            throw new NoSuchElementException();
+
+        else{
+            //biến tạm để get ra
+            ListNode headNode=head;
+
+            //thay đổi head
+            head=head.next;
+
+            //sau khi get giảm kích thướt của LinkedList
+            size--;
+
+            return ((T) headNode.data);
+        }
+    }
+
+    public void reverse(){
+        //vòng lặp tìm 2 node đối xứng đầu cuối rồi swap chúng lại với nhau
+        for(int i=0,j=this.size-1;i<j;i++,j--){
+            ListNode p =head;
+            ListNode p2=head;
+
+            //tìm node đầu tiên tiến dần
+            for(int i2=0;i2<i;i2++){
+                p=p.next;
+            }
+
+            //tìm node cuối lùi vào
+            for(int i2=0;i2<j;i2++){
+                p2=p2.next;
+            }
+
+            T temp= ((T) p.data);
+            p.data=p2.data;
+            p2.data=temp;
+        }
+    }
+
+    public T[] asArray(Class<T> clT){
+
+        T[] aT = (T[]) Array.newInstance(clT,  size);
+        int i=0;
+        for(ListNode p=head;p!=null;p=p.next,i++){
+            aT[i]= (T) p.data;
+        }
+        return aT;
+    }
+
+}
+```
+
+
+## Stream trong Java 8
