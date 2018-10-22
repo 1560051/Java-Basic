@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PascalsTriangleGeneratorTest" tests="8" skipped="3" failures="0" errors="0" timestamp="2018-10-12T05:59:15" hostname="lap10843" time="0.008">
+  <properties/>
+  <testcase name="testTriangleWithFourRows" classname="PascalsTriangleGeneratorTest" time="0.005"/>
+  <testcase name="testTriangleWithZeroRows" classname="PascalsTriangleGeneratorTest" time="0.0"/>
+  <testcase name="testTriangleWithSixRows" classname="PascalsTriangleGeneratorTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testTriangleWithOneRow" classname="PascalsTriangleGeneratorTest" time="0.0"/>
+  <testcase name="testTriangleWithThreeRows" classname="PascalsTriangleGeneratorTest" time="0.0"/>
+  <testcase name="testTriangleWithTenRows" classname="PascalsTriangleGeneratorTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testTriangleWithFiveRows" classname="PascalsTriangleGeneratorTest" time="0.0">
+    <skipped/>
+  </testcase>
+  <testcase name="testTriangleWithTwoRows" classname="PascalsTriangleGeneratorTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
